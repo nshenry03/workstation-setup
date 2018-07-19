@@ -1,0 +1,5 @@
+---
+- name: Vim | DNF | Ensure Vim package is installed
+  dnf:
+    name: vim-enhanced
+    state: present

@@ -1,0 +1,3 @@
+---
+- name: Nick Henry's Workstation | Package Installation
+  include_tasks: "pkgmgr/{{ ansible_pkg_mgr }}.yml"
