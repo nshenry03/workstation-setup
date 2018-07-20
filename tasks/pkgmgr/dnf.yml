@@ -1,5 +1,5 @@
 ---
-- name: DNF | Install Basic Software
+- name: DNF | Install Essential Tools
   dnf:
     name: "{{ item }}"
     state: present
@@ -7,30 +7,59 @@
     - ack
     - byobu
     - colordiff
-    - gimp
-    - gnome-tweak-tool
     - jq
     - meld
     - vim-enhanced
     - xclip
 
-- name: DNF | Install DevOps Software
+- name: DNF | Install Desktop Tools
+  dnf:
+    name: "{{ item }}"
+    state: present
+  with_items:
+    - gimp
+    - gnome-tweak-tool
+
+- name: DNF | Install DevOps Tools
   dnf:
     name: "{{ item }}"
     state: present
   with_items:
     - awscli
 
+
+
+- name: DNF | Setup Google Chrome Repo
+  copy:
+    dest: /etc/yum.repos.d/google-chrome.repo
+    content: |
+      [google-chrome]
+      name=google-chrome
+      baseurl=http://dl.google.com/linux/chrome/rpm/stable/$basearch
+      enabled=1
+      gpgcheck=1
+      gpgkey=https://dl.google.com/linux/linux_signing_key.pub
+    mode: 00644
+
+- name: DNF | Install Google Chrome
+  dnf:
+    name: google-chrome-stable
+    state: present
+
+
+
 - name: DNF | Setup VirtualBox Repo
   get_url:
     url: http://download.virtualbox.org/virtualbox/rpm/fedora/virtualbox.repo
-    dest: "/etc/yum.repos.d/virtualbox.repo"
+    dest: /etc/yum.repos.d/virtualbox.repo
     mode: 00644
 
 - name: DNF | Install VirtualBox
   dnf:
     name: VirtualBox-5.2
     state: present
+
+
 
 - name: DNF | Autoremove unneeded packages installed as dependencies
   dnf:
