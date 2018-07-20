@@ -9,6 +9,10 @@ env:
   - distribution: fedora
     version: 28
 
+matrix:
+  allow_failures:
+    - version: rawhide
+
 services:
   - docker
 
