@@ -29,22 +29,22 @@
 
 
 
-- name: DNF | Setup Google Chrome Repo
-  copy:
-    dest: /etc/yum.repos.d/google-chrome.repo
-    content: |
-      [google-chrome]
-      name=google-chrome
-      baseurl=http://dl.google.com/linux/chrome/rpm/stable/$basearch
-      enabled=1
-      gpgcheck=1
-      gpgkey=https://dl.google.com/linux/linux_signing_key.pub
-    mode: 00644
-
-- name: DNF | Install Google Chrome
-  dnf:
-    name: google-chrome-stable
-    state: present
+      # - name: DNF | Setup Google Chrome Repo
+      #   copy:
+      #     dest: /etc/yum.repos.d/google-chrome.repo
+      #     content: |
+      #       [google-chrome]
+      #       name=google-chrome
+      #       baseurl=http://dl.google.com/linux/chrome/rpm/stable/$basearch
+      #       enabled=1
+      #       gpgcheck=1
+      #       gpgkey=https://dl.google.com/linux/linux_signing_key.pub
+      #     mode: 00644
+      # 
+      # - name: DNF | Install Google Chrome
+      #   dnf:
+      #     name: google-chrome-stable
+      #     state: present
 
 
 
