@@ -1,5 +1,43 @@
 ---
-- name: Vim | DNF | Ensure Vim package is installed
+- name: DNF | Install Basic Software
   dnf:
-    name: vim-enhanced
+    name: {{item}}
     state: present
+  with_items:
+    - ack
+    - byobu
+    - colordiff
+    - gimp
+    - gnome-tweak-tool
+    - jq
+    - meld
+    - vim-enhanced
+    - xclip
+
+- name: DNF | Install DevOps Software
+  dnf:
+    name: {{item}}
+    state: present
+  with_items:
+    - awscli
+
+- name: DNF | Setup VirtualBox Repo
+  copy:
+    dest: "/etc/yum.repos.d/virtualbox.repo"
+    content: |
+      [virtualbox]
+      name=Fedora $releasever - $basearch - VirtualBox
+      baseurl=http://download.virtualbox.org/virtualbox/rpm/fedora/$releasever/$basearch
+      enabled=1
+      gpgcheck=1
+      repo_gpgcheck=1
+      gpgkey=https://www.virtualbox.org/download/oracle_vbox.asc
+
+- name: DNF | Install VirtualBox
+  dnf:
+    name: VirtualBox-5.2
+    state: present
+
+- name: DNF | Autoremove unneeded packages installed as dependencies
+  dnf:
+    autoremove: yes
