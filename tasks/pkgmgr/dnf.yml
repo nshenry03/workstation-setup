@@ -1,7 +1,7 @@
 ---
 - name: DNF | Install Basic Software
   dnf:
-    name: {{item}}
+    name: "{{ item }}"
     state: present
   with_items:
     - ack
@@ -16,7 +16,7 @@
 
 - name: DNF | Install DevOps Software
   dnf:
-    name: {{item}}
+    name: "{{ item }}"
     state: present
   with_items:
     - awscli
