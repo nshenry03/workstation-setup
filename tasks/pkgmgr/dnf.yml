@@ -22,16 +22,10 @@
     - awscli
 
 - name: DNF | Setup VirtualBox Repo
-  copy:
+  get_url:
+    url: http://download.virtualbox.org/virtualbox/rpm/fedora/virtualbox.repo
     dest: "/etc/yum.repos.d/virtualbox.repo"
-    content: |
-      [virtualbox]
-      name=Fedora $releasever - $basearch - VirtualBox
-      baseurl=http://download.virtualbox.org/virtualbox/rpm/fedora/$releasever/$basearch
-      enabled=1
-      gpgcheck=1
-      repo_gpgcheck=1
-      gpgkey=https://www.virtualbox.org/download/oracle_vbox.asc
+    mode: 00644
 
 - name: DNF | Install VirtualBox
   dnf:
