@@ -40,6 +40,7 @@
       gpgcheck=1
       gpgkey=https://dl.google.com/linux/linux_signing_key.pub
     mode: 00644
+    force: no
 
 - name: DNF | Install Google Chrome
   dnf:
