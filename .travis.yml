@@ -3,17 +3,7 @@ become: true
 
 env:
   - distribution: fedora
-    version: rawhide
-  - distribution: fedora
     version: latest
-  - distribution: fedora
-    version: 28
-
-matrix:
-  allow_failures:
-    - env:
-      - distribution: fedora
-        version: rawhide
 
 services:
   - docker
