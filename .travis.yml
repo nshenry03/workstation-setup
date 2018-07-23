@@ -11,7 +11,9 @@ env:
 
 matrix:
   allow_failures:
-    - version: rawhide
+    - env:
+      - distribution: fedora
+        version: rawhide
 
 services:
   - docker
