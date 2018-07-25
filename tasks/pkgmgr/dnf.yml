@@ -42,6 +42,13 @@
     mode: 00644
     force: no
 
+- name: DNF | Install Google Chrome Dependencies
+  dnf:
+    name: "{{ item }}"
+    state: present
+  with_items:
+    - libselinux-python
+
 - name: DNF | Install Google Chrome
   dnf:
     name: google-chrome-stable
