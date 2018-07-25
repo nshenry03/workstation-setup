@@ -29,6 +29,13 @@
 
 
 
+- name: DNF | Install Google Chrome Dependencies
+  dnf:
+    name: "{{ item }}"
+    state: present
+  with_items:
+    - libselinux-python
+
 - name: DNF | Setup Google Chrome Repo
   copy:
     dest: /etc/yum.repos.d/google-chrome.repo
@@ -41,13 +48,6 @@
       gpgkey=https://dl.google.com/linux/linux_signing_key.pub
     mode: 00644
     force: no
-
-- name: DNF | Install Google Chrome Dependencies
-  dnf:
-    name: "{{ item }}"
-    state: present
-  with_items:
-    - libselinux-python
 
 - name: DNF | Install Google Chrome
   dnf:
