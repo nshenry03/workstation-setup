@@ -39,7 +39,7 @@
 - name: Bash | Copy bash files into /home/nhenry
   copy:
     src: "{{ item }}"
-    dest: {{home_dir}}
+    dest: "{{ home_dir }}"
     mode: 0444
     become: yes
     become_user: nhenry
