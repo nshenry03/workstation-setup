@@ -14,38 +14,38 @@
     name: "{{ item.name }}"
     value: "{{ item.value }}"
     scope: global
-    become: yes
-    become_user: nhenry
   loop:
     - { name: 'user.email', value: 'nshenry03@gmail.com' }
     - { name: 'user.name', value: 'Nick Henry' }
     - { name: 'user.signingkey', value: '4AFE58C3' }
+  become: yes
+  become_user: nhenry
 
 - name: Bash | Creates 'Repositories' directory
   file:
     path: "{{home_dir}}/Repositories"
     state: directory
     mode: 0775
-    become: yes
-    become_user: nhenry
+  become: yes
+  become_user: nhenry
 
 - name: Bash | Install bash gist
   git:
     repo: git@gist.github.com:6de76892df48cac6e8dfd543dad26412.git
     dest: "{{home_dir}}/Repositories/bash"
-    become: yes
-    become_user: nhenry
+  become: yes
+  become_user: nhenry
 
 - name: Bash | Copy bash files into /home/nhenry
   copy:
     src: "{{ item }}"
     dest: "{{ home_dir }}"
     mode: 0444
-    become: yes
-    become_user: nhenry
   with_items:
     - .bash_aliases
     - .bash_exports
     - .bash_profile
     - .bashrc
     - .inputrc
+  become: yes
+  become_user: nhenry
