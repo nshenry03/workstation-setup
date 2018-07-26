@@ -59,6 +59,7 @@
     - .vim
     - .vim.backupdir
     - .vim.swapdir
+    - .vim/templates
   become: yes
   become_user: nhenry
 
@@ -91,7 +92,7 @@
 - name: Vim | Copy vim personal.templates file into /home/nhenry
   copy:
     src: "/home/nhenry/Repositories/gists/vim/personal.templates"
-    dest: "/home/nhenry/.vim/bash-support/templates"
+    dest: "/home/nhenry/.vim/templates"
     mode: 0444
   become: yes
   become_user: nhenry
