@@ -50,11 +50,15 @@
   become: yes
   become_user: nhenry
 
-- name: Vim | Creates '.vim' directory
+- name: Vim | Creates '.vim' directories
   file:
-    path: "/home/nhenry/.vim"
+    path: "/home/nhenry/{{ item }}"
     state: directory
     mode: 0775
+  with_items:
+    - .vim
+    - .vim.backupdir
+    - .vim.swapdir
   become: yes
   become_user: nhenry
 
@@ -68,3 +72,26 @@
       - --strip-components=1
     group: nhenry
     owner: nhenry
+
+- name: Vim | Install Vim gist
+  git:
+    repo: https://gist.github.com/2b47d38c6837f26edc124c588989786a.git
+    dest: "/home/nhenry/Repositories/gists/vim"
+  become: yes
+  become_user: nhenry
+
+- name: Vim | Copy .vimrc into /home/nhenry
+  copy:
+    src: "/home/nhenry/Repositories/gists/vim/.vimrc"
+    dest: "/home/nhenry"
+    mode: 0444
+  become: yes
+  become_user: nhenry
+
+- name: Vim | Copy vim personal.templates file into /home/nhenry
+  copy:
+    src: "/home/nhenry/Repositories/gists/vim/personal.templates"
+    dest: "/home/nhenry/.vim/bash-support/templates"
+    mode: 0444
+  become: yes
+  become_user: nhenry
