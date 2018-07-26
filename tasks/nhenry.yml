@@ -39,7 +39,7 @@
 
 - name: Bash | Copy bash files into /home/nhenry
   copy:
-    src: "{{ item }}"
+    src: "/home/nhenry/Repositories/gists/bash/{{ item }}"
     dest: "/home/nhenry"
     mode: 0444
   with_items:
