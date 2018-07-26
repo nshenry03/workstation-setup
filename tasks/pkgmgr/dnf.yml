@@ -19,13 +19,21 @@
     - gimp
     - gnome-tweak-tool
 
+
+
+- name: DNF | Setup Docker Repo
+  get_url:
+    url: https://download.docker.com/linux/fedora/docker-ce.repo
+    dest: /etc/yum.repos.d/docker-ce.repo
+    mode: 00644
+
 - name: DNF | Install DevOps Tools
   dnf:
     name: "{{ item }}"
     state: present
   with_items:
     - awscli
-    - docker
+    - docker-ce
     - git
 
 
