@@ -23,7 +23,7 @@
 
 - name: Bash | Creates 'Repositories' directory
   file:
-    path: "{{ lookup('env', 'HOME') }}/Repositories"
+    path: "/home/nhenry/Repositories"
     state: directory
     mode: 0775
   become: yes
@@ -32,14 +32,14 @@
 - name: Bash | Install bash gist
   git:
     repo: git@gist.github.com:6de76892df48cac6e8dfd543dad26412.git
-    dest: "{{ lookup('env', 'HOME') }}/Repositories/bash"
+    dest: "/home/nhenry/Repositories/bash"
   become: yes
   become_user: nhenry
 
 - name: Bash | Copy bash files into /home/nhenry
   copy:
     src: "{{ item }}"
-    dest: "{{ lookup('env', 'HOME') }}"
+    dest: "/home/nhenry"
     mode: 0444
   with_items:
     - .bash_aliases
@@ -47,5 +47,23 @@
     - .bash_profile
     - .bashrc
     - .inputrc
+  become: yes
+  become_user: nhenry
+
+- name: Vim | Creates '.vim' directory
+  file:
+    path: "/home/nhenry/.vim"
+    state: directory
+    mode: 0775
+  become: yes
+  become_user: nhenry
+
+- name: Vim | Install Vim Bash-Support
+  unarchive:
+    src: https://github.com/WolfgangMehner/bash-support/archive/version-4.3.tar.gz
+    dest: "/home/nhenry/.vim"
+    creates: "/home/nhenry/.vim/bash-support/README.md"
+    remote_src: yes
+    extra_opts: ["strip-components=1"]
   become: yes
   become_user: nhenry
