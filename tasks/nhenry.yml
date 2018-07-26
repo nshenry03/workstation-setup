@@ -8,9 +8,6 @@
       - wheel
     home: /home/nhenry
     shell: /bin/bash
-    generate_ssh_key: yes
-    ssh_key_type: ed25519
-    ssh_key_file: .ssh/id_ed25519
 
 - name: Bash | Git Global Config
   git_config:
@@ -35,9 +32,8 @@
 
 - name: Bash | Install bash gist
   git:
-    repo: git@gist.github.com:6de76892df48cac6e8dfd543dad26412.git
+    repo: https://gist.github.com/6de76892df48cac6e8dfd543dad26412.git
     dest: "/home/nhenry/Repositories/gists/bash"
-    accept_hostkey: yes
   become: yes
   become_user: nhenry
 
