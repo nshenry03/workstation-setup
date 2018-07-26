@@ -23,7 +23,7 @@
 
 - name: Bash | Creates 'Repositories' directory
   file:
-    path: "{{home_dir}}/Repositories"
+    path: "{{ lookup('env', 'HOME') }}/Repositories"
     state: directory
     mode: 0775
   become: yes
@@ -32,14 +32,14 @@
 - name: Bash | Install bash gist
   git:
     repo: git@gist.github.com:6de76892df48cac6e8dfd543dad26412.git
-    dest: "{{home_dir}}/Repositories/bash"
+    dest: "{{ lookup('env', 'HOME') }}/Repositories/bash"
   become: yes
   become_user: nhenry
 
 - name: Bash | Copy bash files into /home/nhenry
   copy:
     src: "{{ item }}"
-    dest: "{{ home_dir }}"
+    dest: "{{ lookup('env', 'HOME') }}"
     mode: 0444
   with_items:
     - .bash_aliases
