@@ -10,7 +10,7 @@
     shell: /bin/bash
 
 - name: Bash | Git Global Config
-  user:
+  git_config:
     name: "{{ item.name }}"
     value: "{{ item.value }}"
     scope: global
