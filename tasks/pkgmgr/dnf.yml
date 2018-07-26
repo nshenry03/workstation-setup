@@ -6,7 +6,6 @@
   with_items:
     - ack
     - byobu
-    - colordiff
     - jq
     - meld
     - vim-enhanced
@@ -26,7 +25,8 @@
     state: present
   with_items:
     - awscli
-
+    - docker
+    - git
 
 
 - name: DNF | Install Google Chrome Dependencies
