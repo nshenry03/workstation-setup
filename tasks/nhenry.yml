@@ -23,16 +23,18 @@
 
 - name: Bash | Creates 'Repositories' directory
   file:
-    path: "/home/nhenry/Repositories"
+    path: "/home/nhenry/Repositories/gists"
     state: directory
     mode: 0775
+    recurse: yes
   become: yes
   become_user: nhenry
 
 - name: Bash | Install bash gist
   git:
     repo: git@gist.github.com:6de76892df48cac6e8dfd543dad26412.git
-    dest: "/home/nhenry/Repositories/bash"
+    dest: "/home/nhenry/Repositories/gists/bash"
+    accept_hostkey: yes
   become: yes
   become_user: nhenry
 
